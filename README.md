@@ -1,6 +1,13 @@
 # vision-tools
 
+**WARNING:** IT IS NOT PROPERLY TESTED AND MAY DAMAGE YOUR FILES. USE AT YOUR OWN RISK.
 
+
+## Modules
+
+#### Face Dataset Generator
+
+Extracts and corrects rotated faces with user defined padding from images. 
 
 
 ### License

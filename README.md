@@ -1,6 +1,8 @@
+**WARNING:** IT IS NOT PROPERLY TESTED AND MAY DAMAGE YOUR FILES. USE AT YOUR OWN RISK.
+
 # vision-tools
 
-**WARNING:** IT IS NOT PROPERLY TESTED AND MAY DAMAGE YOUR FILES. USE AT YOUR OWN RISK.
+A bunch of cli tools for deep learning and computer vision.
 
 
 ## Modules

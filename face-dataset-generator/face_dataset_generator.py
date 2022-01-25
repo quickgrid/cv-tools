@@ -17,17 +17,17 @@ logging.basicConfig(level=logging.DEBUG)
 
 class FaceDatasetGeneratorPCN:
     def __init__(
-        self,
-        output_path: str = '',
-        same_size: bool = False,
-        crop_size: int = 300,
-        padding: int = 20,
-        write_json: bool = False,
-        write_image: bool = False,
-        line_thickness: int = 2,
-        side_color: Tuple = (255, 255, 0),
-        top_color: Tuple = (255, 0, 0),
-        info: bool = False,
+            self,
+            output_path: str = '',
+            same_size: bool = False,
+            crop_size: int = 300,
+            padding: int = 20,
+            write_json: bool = False,
+            write_image: bool = False,
+            line_thickness: int = 2,
+            side_color: Tuple = (255, 255, 0),
+            top_color: Tuple = (255, 0, 0),
+            info: bool = False,
     ) -> None:
         super(FaceDatasetGeneratorPCN, self).__init__()
         self.output_path = output_path
@@ -41,12 +41,17 @@ class FaceDatasetGeneratorPCN:
         self.top_color = top_color
         self.info = info
 
+    def process_points(
+            self,
+    ) -> None:
+        raise NotImplementedError()
+
     def single_image_process(
-        self,
-        input_path: str,
-        show_image: bool = True,
-        show_cropped: bool = False,
-        show_delay: int = 500,
+            self,
+            input_path: str,
+            show_image: bool = True,
+            show_cropped: bool = False,
+            show_delay: int = 500,
     ) -> None:
         try:
             os.makedirs(self.output_path, exist_ok=True)
@@ -176,7 +181,10 @@ class FaceDatasetGeneratorPCN:
                 show_cropped=False,
             )
 
-    def process_queue(self, queue):
+    def process_queue(
+            self,
+            queue: Queue
+    ) -> None:
         while not queue.empty():
             filename = queue.get()
             self.single_image_process(

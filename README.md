@@ -5,11 +5,16 @@
 
 ## Modules
 
-#### Face Dataset Generator
+#### [Face Dataset Generator](https://github.com/quickgrid/vision-tools/tree/main/face-dataset-generator)
 
 - Extracts all faces in image with user defined padding from images.
 - Crops and saves all faces in image with correct orientation around `Z` axis.
 - Saves `json` file for each face with rotated and non-rotated rectangle, rotation angle.
+
+#### [Object Dataset Generator]()
+
+- Uses OpenCV DNN to run yolo model with `*.weight`, `classes.names` and `*.cfg`.
+- Takes list of class objects to detect and extracts the image, json file.
 
 ## References
 

@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Project specific files
+face-dataset-generator/imgs/
+face-dataset-generator/outputs/

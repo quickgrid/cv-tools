@@ -27,6 +27,7 @@ class FaceDatasetGeneratorPCN:
         line_thickness: int = 2,
         side_color: Tuple = (255, 255, 0),
         top_color: Tuple = (255, 0, 0),
+        info: bool = False,
     ) -> None:
         super(FaceDatasetGeneratorPCN, self).__init__()
         self.output_path = output_path
@@ -38,19 +39,21 @@ class FaceDatasetGeneratorPCN:
         self.line_thickness = line_thickness
         self.side_color = side_color
         self.top_color = top_color
+        self.info = info
 
     def single_image_process(
         self,
         input_path: str,
         show_image: bool = True,
         show_cropped: bool = False,
-        info: bool = False,
         show_delay: int = 500,
     ) -> None:
         try:
             os.makedirs(self.output_path, exist_ok=True)
             file_name, ext = os.path.basename(input_path).split('.')
-            print(file_name, ext)
+
+            if self.info:
+                logging.info(f'Processing: {file_name}')
 
             img = cv2.imread(input_path)
             draw_img = img.copy()
@@ -137,13 +140,13 @@ class FaceDatasetGeneratorPCN:
 
                 if self.write_image and self.output_path != '':
                     out_file_name = f'{file_name}_out_{idx}.{ext}'
-                    if info:
-                        print(os.path.join(self.output_path, out_file_name))
+                    if self.info:
+                        logging.info(os.path.join(self.output_path, out_file_name))
                     cv2.imwrite(os.path.join(self.output_path, out_file_name), ret)
 
             if self.write_json:
-                if info:
-                    print(os.path.join(self.output_path, f'{file_name}.json'))
+                if self.info:
+                    logging.info(os.path.join(self.output_path, f'{file_name}.json'))
                 try:
                     with open(os.path.join(self.output_path, f'{file_name}.json'), 'w') as f:
                         json.dump(detection_data_dict, f, indent=4, sort_keys=True)
@@ -169,7 +172,6 @@ class FaceDatasetGeneratorPCN:
         for f in files_list:
             self.single_image_process(
                 input_path=f,
-                info=False,
                 show_image=False,
                 show_cropped=False,
             )
@@ -179,7 +181,6 @@ class FaceDatasetGeneratorPCN:
             filename = queue.get()
             self.single_image_process(
                 input_path=filename,
-                info=False,
                 show_image=False,
                 show_cropped=False,
             )

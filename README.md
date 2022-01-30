@@ -18,6 +18,13 @@ A bunch of cli tools for deep learning and computer vision.
 - Uses OpenCV DNN to run yolo model with `*.weight`, `classes.names` and `*.cfg`.
 - Takes list of class objects to detect and extracts the image, json file.
 
+## TODO
+
+- [ ] Replace python looping with numba njit parallel or use cython.
+- [ ] Make a setup script for install and run from terminal.
+- [ ] Upload object dataset generator code.
+- [ ] Use mediapipe face detector with face mesh landmarks as alternate of PCN.
+
 ## References
 
 Look into [references.md](https://github.com/quickgrid/vision-tools/blob/main/references.md).
